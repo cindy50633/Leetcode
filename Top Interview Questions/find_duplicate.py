@@ -1,46 +1,42 @@
 def contain_duplicate(nums)->bool:
-    if len(nums) > 2:
-        mid = len(nums) // 2
-        contain_duplicate(nums[:mid])
-        contain_duplicate(nums[mid+1:])
-    elif len(nums) == 2:
-        if nums[0] == nums[1]:
-            print('true')
-            return True
-    else:
-        print('false')
-        return False
+    if nums:
+        nums = merge_sort(nums)
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i+1]:
+                return True
+    return False
 
 
+n = 0
 def merge_sort(nums)->list:
-    print(nums)
+    global n
+    n += 1
     if len(nums) > 1:
         mid = len(nums) // 2
         left_nums = nums[:mid]
         right_nums = nums[mid:]
-
         left_nums = merge_sort(left_nums)
         right_nums = merge_sort(right_nums)
 
         nums = []
+        w = 0
 
         while len(left_nums) > 0 and len(right_nums) > 0:
-            print('left_nums = ' + str(left_nums))
-            print('right_nums = ' + str(right_nums))
+            w += 1
             if left_nums[0] < right_nums[0]:
-                print('before pop:' + str(left_nums))
                 nums.append(left_nums.pop(0))
-                print('after pop:' + str(left_nums))
             else:
-                print('before pop:' + str(right_nums))
                 nums.append(right_nums.pop(0))
-                print('before pop:' + str(right_nums))
-            print('nums = ' + str(nums))
-            # print(nums)
+        l = 0
         for v in left_nums:
+            l += 0
             nums.append(v)
+        r = 0
         for v in right_nums:
+            r += 1
             nums.append(v)
-        return nums
+        n += max(l, r, w)
+    return nums
 
-merge_sort([9,8,7,6,5,4,3,2,1])
+merge_sort([i for i in range(500000)])
+print(n)
