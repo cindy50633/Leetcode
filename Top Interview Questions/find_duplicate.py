@@ -38,5 +38,6 @@ def merge_sort(nums)->list:
         n += max(l, r, w)
     return nums
 
-merge_sort([i for i in range(500000)])
-print(n)
+# merge_sort([i for i in range(500000)])
+# print(n)
+print(contain_duplicate([i for i in range(50000)]))
